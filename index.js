@@ -21,5 +21,5 @@ app.get('/login', function (req, res) {
 })
 
 app.listen(8080, function () {
-  console.log('Application Started')
+  console.log('Application started')
 })
