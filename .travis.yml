@@ -8,23 +8,23 @@ cache:
     - node_modules
 deploy:
 - provider: s3
-  access_key_id:
-  secret_access_key: 
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY 
   local_dir: dpl_cd_upload
   skip_cleanup: true
   on: &2
-    repo: organization/reponameHERE
+    repo: Travis/express
   bucket: express-app
   region: us-east-2
 - provider: codedeploy
-  access_key_id: 
-  secret_access_key: 
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
   bucket: express-app
   key: latest.zip
   bundle_type: zip
   application: express
   deployment_group: expressapp-group
-  region: serverRegionHERE
+  region: us-
   on: *2
 script:
   - zip -r latest *
