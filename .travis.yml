@@ -6,7 +6,7 @@ cache:
     - node_modules
 
 script:
-  - npm run build
+  - npm run serve
   - npm test
 before_deploy:
   - cd ..
