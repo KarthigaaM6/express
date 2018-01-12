@@ -8,8 +8,8 @@ cache:
     - node_modules
 deploy:
 - provider: s3
-  access_key_id:
-  secret_access_key: 
+  access_key_id:AKIAJ5JZ7EGL5XBZQQQQ
+  secret_access_key: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 
   local_dir: dpl_cd_upload
   skip_cleanup: true
   on: &2
@@ -17,8 +17,8 @@ deploy:
   bucket: express-app
   region: us-east-2
 - provider: codedeploy
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+  access_key_id: AKIAJ5JZ7EGL5XBZQQQQ
+  secret_access_key: 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
   bucket: express-app
   key: latest.zip
   bundle_type: zip
