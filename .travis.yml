@@ -38,4 +38,4 @@ deploy:
   region: us-east-2
   on: *2
 after-deploy:
-  unzip: latest.zip
+  - unzip: latest.zip
