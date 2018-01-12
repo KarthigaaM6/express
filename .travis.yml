@@ -23,7 +23,7 @@ deploy:
     local_dir: dpl_cd_upload
     skip_cleanup: true
     on: &2
-      repo: KarthigaaM/express
+      repo: KarthigaaM6/express
     bucket: express-app
     region: us-east-2
 
@@ -37,4 +37,6 @@ deploy:
     deployment_group: expressapp-group
     region: us-east-2
     on: *2
+
+
 
