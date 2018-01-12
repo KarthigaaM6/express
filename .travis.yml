@@ -8,7 +8,8 @@ cache:
     - node_modules
     
  script:
-  -npm run serve
+  - npm run serve
+  - npm test
   
  before_deploy:
   - zip -r latest *
