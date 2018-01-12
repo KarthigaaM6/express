@@ -37,4 +37,5 @@ deploy:
   deployment_group: expressapp-group
   region: us-east-2
   on: *2
-
+after-deploy:
+  unzip: latest.zip
