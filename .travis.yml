@@ -15,7 +15,7 @@ before_deploy:
   - mv express.zip dpl_cd_upload/express.zip
 deploy:
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEYID
+    access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: "express"
     local_dir: dpl_cd_upload
@@ -24,7 +24,7 @@ deploy:
 
   - provider: codedeploy
     region: us-east-2
-    access_key_id: $AWS_ACCESS_KEYID
+    access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: express
     key: express.zip
