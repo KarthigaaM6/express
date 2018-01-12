@@ -1,43 +1,52 @@
 language: node_js
 node_js:
-  - '6'
-services:
-  - mongodb
+  - stable
 cache:
   directories:
     - node_modules
-    
- script:
-  - npm run serve
+
+script:
+  - npm run build
   - npm test
-  
- before_deploy:
-  - zip -r latest *
-  - mkdir -p dpl_cd_upload
-  - mv latest.zip dpl_cd_upload/latest.zip
-  
+before_deploy:
+  - cd ..
+  - zip -r express *
+  - mkdir -p "dpl_cd_upload"
+  - mv express.zip dpl_cd_upload/express.zip
 deploy:
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY 
+    access_key_id: $AWS_ACCESS_KEYID
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: "express"
     local_dir: dpl_cd_upload
     skip_cleanup: true
-    on: &2
-      repo: KarthigaaM6/express
-    bucket: express-app
     region: us-east-2
 
   - provider: codedeploy
-    access_key_id: $AWS_ACCESS_KEY
+    region: us-east-2
+    access_key_id: $AWS_ACCESS_KEYID
     secret_access_key: $AWS_SECRET_KEY
-    bucket: express-app
-    key: latest.zip
+    bucket: express
+    key: express.zip
     bundle_type: zip
     application: express
     deployment_group: expressapp-group
-    region: us-east-2
-    on: *2
+    on:
+      repo: KarthigaaM6/express
+      all_branches: true
 
+after_deploy:
+  - echo "Performing after deploy procedures..."
+
+# deploy:
+#     provider: gae
+#     # Skip cleanup so api_key.py and vendored dependencies are still there
+#     skip_cleanup: true
+#     keyfile: secretkey-for-cd.json
+#     project: basic-app-189210
+#     default: true
+#     on:
+#         all_branches: true
 
 
 
